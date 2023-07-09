@@ -11,22 +11,42 @@ font-family: 'Poppins', sans-serif;
 	--black-border: #26292d;
 	--white: #fff;
 	--purple: #5c62ec;
+	/* 0E05F8 */
 
-	--dark-bg: var(--black);
-	--dark-border: var(--black-border);
 	--heder-text: var(--white);
 	--accent: var(--purple);
+
+	/* Light mode */
+	--dark-border: rgba(255, 255, 255, 0.1);
+	--dark-bg: #282830;
+	--page-bg: var(--white);
 	--text-color: var(--black);
+	--project-card-bg: var(--white);
+	--box-shadow: 0px 5px 35px rgba(0, 0, 0, 0.4);
+}
+
+.dark {
+	/* Dark mode */
+	--dark-border: var(--black-border);
+	--dark-bg: var(--black);
+	--page-bg: rgba(23, 23, 24, 0.9);
+	--text-color: var(--white);
+	--project-card-bg: var(--black);
+	--box-shadow: 0px 5px 35px rgba(0, 0, 0, 0.25);
 }
 
 html,
 body {
-	font-family: 'DM Sans', sans-serif;
-	letter-spacing: -0.5px;
-	color: var(--text-color);
 	display: flex;
 	flex-direction: column;
-	height: 100%;
+	min-height: 100vh;
+
+	font-family: 'DM Sans', sans-serif;
+	letter-spacing: -0.5px;
+
+	/* Color mode */
+	background-color: var(--page-bg);
+	color: var(--text-color);
 }
 
 /* General */
@@ -70,7 +90,7 @@ body {
 
 .nav-row {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-items: center;
 	column-gap: 30px;
 	row-gap: 20px;
@@ -78,6 +98,7 @@ body {
 }
 
 .logo {
+	margin-right: auto;
 	color: var(--heder-text);
 	font-size: 24px;
 	font-family: 'Poppins', sans-serif;
@@ -124,6 +145,47 @@ body {
 	height: 2px;
 	width: 100%;
 	background-color: var(--accent);
+}
+
+/* Dark mode btn */
+
+.dark-mode-btn {
+	order: 9;
+	position: relative;
+
+	display: flex;
+	justify-content: space-between;
+	padding: 5px;
+	width: 52px;
+	height: 26px;
+	border-radius: 50px;
+	background-color: #272727;
+}
+
+.dark-mode-btn::before {
+	content: '';
+
+	position: absolute;
+	top: 1px;
+	left: 1px;
+
+	display: block;
+	width: 24px;
+	height: 24px;
+
+	border-radius: 50%;
+	background-color: var(--white);
+
+	transition: left 0.2s ease-in;
+}
+
+.dark-mode-btn--active::before {
+	left: 26px;
+}
+
+.dark-mode-btn__icon {
+	position: relative;
+	z-index: 9;
 }
 
 /* Header */
@@ -218,6 +280,7 @@ body {
 
 	border-radius: 5px;
 	border: 1px solid #000;
+	background-color: var(--white);
 	color: #000;
 
 	/* плавность анимации при наведении*/
@@ -245,8 +308,8 @@ body {
 
 .project {
 	max-width: 370px;
-	background-color: var(--white);
-	box-shadow: 0px 5px 35px rgba(0, 0, 0, 0.25);
+	background-color: var(--project-card-bg);
+	box-shadow: var(--box-shadow);
 	border-radius: 10px;
 
 	/* плавность анимации при наведении*/
@@ -286,7 +349,7 @@ body {
 	min-width: 100%;
 	margin-bottom: 40px;
 
-	box-shadow: 0px 5px 35px rgba(0, 0, 0, 0.25);
+	box-shadow: var(--box-shadow);
 	border-radius: 10px;
 }
 
@@ -356,7 +419,7 @@ body {
 	font-size: 16px;
 }
 
-@media (max-width: 620px) {
+@media (max-width: 646px) {
 	/* Header */
 
 	.header {
@@ -427,5 +490,13 @@ body {
 
 	.social__item {
 		width: 28px;
+	}
+
+	.nav-row {
+		justify-content: space-between;
+	}
+
+	.dark-mode-btn {
+		order: 0;
 	}
 }
